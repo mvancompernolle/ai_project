@@ -1,0 +1,13 @@
+﻿
+DROP TABLE TagBinary
+GO
+DROP TABLE TagFullText
+GO
+DROP TABLE TagPicture
+GO
+DROP TABLE TagText
+GO
+DROP TABLE SourceFileTag
+GO
+DROP TABLE SourceFile
+GO

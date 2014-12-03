@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Id3Lib.FlagHandler">
+    <Position X="3" Y="5.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>IAAAJgCAAAAAKAAAAAACBAAAAEAAIIAAAAAIAAAAAgA=</HashCode>
+      <FileName>ID3\FlagHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Id3Lib.TagHandler">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>CAgAwAAEhEAAAFAcAEIAAAhAiIAAAAAAIAAASEAAAAA=</HashCode>
+      <FileName>ID3\TagHandler.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_frameModel" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Id3Lib.FrameHelper">
+    <Position X="3" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAAgAAAAAAAAAIAAAA=</HashCode>
+      <FileName>ID3\FrameHelper.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="flagHandler" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Id3Lib.FrameModel">
+    <Position X="8.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BgAAAAAQAAAAAAAEAAAEAAAAAAgAgAAAAAAAAAAACAE=</HashCode>
+      <FileName>ID3\FrameModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_tagHeader" />
+      <Field Name="_tagExtendedHeader" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="_frames" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Id3Lib.ExtendedHeader">
+    <Position X="11" Y="5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>BgAAAAAAAAQAgAAAAAAAAAAAACBAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>ID3\ExtendedHeader.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_tagHeader" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Id3Lib.Header">
+    <Position X="11" Y="1.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>JAAAAIAQkAAACAAJAAAAACIACGBgAAgABAIEAAAAgAA=</HashCode>
+      <FileName>ID3\Header.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Id3Lib.ID3v1">
+    <Position X="7.75" Y="4.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAACEFEAABAAIAAIAIDoAAKBAIAAAIACCCAAAIAA=</HashCode>
+      <FileName>ID3\ID3v1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Id3Lib.FrameManager">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACBAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>ID3\FrameManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Id3Lib.IFrame" Collapsed="true">
+    <Position X="8.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgBAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Frames\IFrame.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Tahoma" Size="8.4" />
+</ClassDiagram>

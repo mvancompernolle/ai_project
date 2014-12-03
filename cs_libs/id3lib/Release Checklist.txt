@@ -1,0 +1,18 @@
+update version and copyright date in
+	Id3Lib\Properties\AssemblyInfo.cs
+	Mp3Lib\Properties\AssemblyInfo.cs
+	Utils\Properties\AssemblyInfo.cs
+update changelog
+rebuild release and debug configs
+run tests 
+update svn
+export from svn to a clean directory
+remove svn bindings
+rebuild release and debug configs
+close solution
+delete obj directories
+delete .suo file
+delete this file - release checklist.txt
+zip up everything left
+upload to sourceforge
+update project news

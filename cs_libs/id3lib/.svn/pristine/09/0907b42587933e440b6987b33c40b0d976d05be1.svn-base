@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Id3Lib.Frames;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+
+namespace Id3Lib.Tests
+{
+    [TestClass]
+    public class FrameHelperTest
+    {
+        [TestMethod]
+        public void TagCompression()
+        {
+            FrameModel frameModel = new FrameModel();
+
+            FrameHelper frameHelper = new FrameHelper(frameModel.Header);
+
+            FrameText originalFrame = (FrameText)FrameFactory.Build("TALB");
+            originalFrame.Text = "Hello World!!!";
+
+            OptionHandler flagHandler = new OptionHandler(frameModel.Header);
+            flagHandler.Flags = originalFrame.Flags;
+            flagHandler.Compression = true;
+            originalFrame.Flags = flagHandler.Flags;
+
+            byte[] body = frameHelper.Make(originalFrame);
+
+            FrameText resultFrame = (FrameText)frameHelper.Build("TALB", originalFrame.Flags, body);
+
+            Assert.AreEqual(resultFrame.Text, originalFrame.Text);
+        }
+    }
+}

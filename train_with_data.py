@@ -19,22 +19,26 @@ names = []
 for line in dataFile:
 
     vals = line.rstrip().split(' ')
-
+    
     # get targets
     names.append(vals[0])
     targets.append(float(vals[1]))
 
     # get features
     temp = []
+    count = 0
     for i in vals[2:]:
+        if(count == 0 and float(i) == 0):
+            print i, vals[0]
         temp.append(float(i))
+        count+=1
     features.append(temp)
 
 # randomize the data
 size = len(targets)
 randomVals = range(size)
 random.shuffle(randomVals)
-print randomVals
+#print randomVals
 
 testTargets = []
 testFeatures = []
@@ -55,17 +59,6 @@ for i in range(len(randomVals))[int(size * .9):]:
     testFeatures.append(features[randomVals[i]])
     testNames.append(names[randomVals[i]])
 
-#print features
-#separate data into training and test
-#testTargets = targets[int(size * .9):]
-#testFeatures = features[int(size * .9):]
-#testNames = names[int(size * .9):]
-#features = features[:int(.1*size)]
-#targets = targets[:int(.1*size)]
-#names = names[:int(.1*size)]
-
-#print size, len(testTargets), len(targets)
-
 # create linear regression object
 regr = linear_model.LinearRegression()
 
@@ -78,7 +71,14 @@ for i in range(0, len(testFeatures)):
     sum = 0
     for j in range(len(weights)):
         sum += weights[j]
-    print testNames[i], round(sum), testTargets[i] 
 
-print regr.coef_
-print regr.score(testFeatures, testTargets)
+    errorsPerLine = 0
+    if testFeatures[i][2] > 0:
+        errorsPerLine = testTargets[i]/testFeatures[i][2]
+    else: 
+        errorsPerLine = testTargets[i]
+
+    #print testNames[i], round(sum), testTargets[i], testFeatures[i][2], errorsPerLine 
+
+#print regr.coef_
+#print regr.score(testFeatures, testTargets)

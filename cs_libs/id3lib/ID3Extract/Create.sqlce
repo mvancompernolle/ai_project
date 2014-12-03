@@ -1,0 +1,77 @@
+﻿CREATE TABLE [SourceFile](
+    [FileId] [int] IDENTITY(1,1),
+    [FileName] [nvarchar](256) NOT NULL,
+    [FilePath] [nvarchar](256) NULL,
+    CONSTRAINT PK_SourceFile PRIMARY KEY ([FileId])) 
+GO
+
+CREATE TABLE [SourceFileTag](
+    [TagId] [int] IDENTITY(1,1),
+    [FileId] [int] NOT NULL,
+    [Tag] [nchar](4) NOT NULL,
+    CONSTRAINT PK_SourceFileTag PRIMARY KEY ([TagId]))
+GO
+
+CREATE NONCLUSTERED INDEX [IX_SourceFileTag_FileId_Tag] ON [SourceFileTag] 
+(
+    [FileId] ASC,
+    [Tag] ASC
+)
+GO
+
+CREATE TABLE [TagText](
+    [TagId] [int] NOT NULL,
+    [TextEncodingId] [smallint] NOT NULL,
+    [Description] [nvarchar](256) NULL,
+    [Text] [nvarchar](4000) NULL,
+ CONSTRAINT [PK_TagText] PRIMARY KEY([TagId]))
+GO
+
+CREATE TABLE [TagPicture](
+    [TagId] [int] NOT NULL,
+    [TextEncodingId] [smallint] NOT NULL,
+    [MimeType] [nvarchar](50) NULL,
+    [PictureTypeId] [smallint] NOT NULL,
+    [Description] [nvarchar](256) NULL,
+    [BinaryImage] [image] NULL,
+ CONSTRAINT [PK_TagImage] PRIMARY KEY ([TagId]))
+GO
+
+CREATE TABLE [TagFullText](
+    [TagId] [int] NOT NULL,
+    [TextEncodingId] [smallint] NOT NULL,
+    [TextLanguage] [nchar](3) NOT NULL,
+    [Description] [nvarchar](256) NULL,
+    [Comment] [ntext] NULL,
+ CONSTRAINT [PK_TagComment] PRIMARY KEY ([TagId]))
+GO
+
+CREATE TABLE [TagBinary](
+    [TagId] [int] NOT NULL,
+    [TextEncodingId] [smallint] NOT NULL,
+    [MimeType] [nvarchar](50) NULL,
+    [FileName] [nvarchar](256) NULL,
+    [Description] [nvarchar](256) NULL,
+    [BinaryObject] [image] NULL,
+ CONSTRAINT [PK_TagBinary] PRIMARY KEY ([TagId]))
+GO
+
+ALTER TABLE [SourceFileTag] ADD CONSTRAINT [FK_SourceFileTag_SourceFile] FOREIGN KEY([FileId])
+REFERENCES [SourceFile] ([FileId]) ON DELETE CASCADE
+GO
+
+ALTER TABLE [TagText] ADD CONSTRAINT [FK_TagText_SourceFileTag] FOREIGN KEY([TagId])
+REFERENCES [SourceFileTag] ([TagId]) ON DELETE CASCADE
+GO
+
+ALTER TABLE [TagPicture] ADD CONSTRAINT [FK_TagPicture_SourceFileTag] FOREIGN KEY([TagId])
+REFERENCES [SourceFileTag] ([TagId]) ON DELETE CASCADE
+GO
+
+ALTER TABLE [TagFullText] ADD CONSTRAINT [FK_TagFullText_SourceFileTag] FOREIGN KEY([TagId])
+REFERENCES [SourceFileTag] ([TagId]) ON DELETE CASCADE
+GO
+
+ALTER TABLE [TagBinary] ADD CONSTRAINT [FK_TagBinary_SourceFileTag] FOREIGN KEY([TagId])
+REFERENCES [SourceFileTag] ([TagId]) ON DELETE CASCADE
+GO

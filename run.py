@@ -16,15 +16,12 @@ def main():
             print count
             count += 1
 
-            # get the number of lines in the file
-            lines = sum(1 for line in open(f))
-
             # spawn a process that runs the linter on the file
             p = sub.Popen("python lint.py " + f, stdout=sub.PIPE, stderr=sub.PIPE, shell=True)
 
             # get the num errors from the linter and write it to the data file
             out, err = p.communicate()
-            fout.write(f.rsplit('/')[1] + ' ' + str(lines) + ' ' + err.split(' ')[-1])
+            fout.write(f.rsplit('/')[1] + ' ' + err.split(' ')[-1])
 
 
 if __name__ == '__main__':

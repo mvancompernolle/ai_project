@@ -17,6 +17,7 @@ def main():
 
             with open('data/' + fileName, 'r') as src:
 
+                lineCount = 0;
                 emptyLineCount = 0
                 commentLineCount = 0
                 poorlySpacedComments = 0
@@ -28,10 +29,12 @@ def main():
                 poorlySpacedOpener = 0
                 endLineWhiteSpace = 0
                 badSpacingBeforeComment = 0
-                lineNum = 1
 
                 # loop through each line in file
                 for l in src:
+
+                    # increment number of lines
+                    lineCount += 1
 
                     # check to see if the line is empty
                     emptyline = re.findall('\S+', l)
@@ -87,13 +90,11 @@ def main():
                         endLineWhiteSpace += 1
                         #print whiteSpaceEnd.group(), lineNum
 
-                    lineNum += 1
-
                 # add file name and label to output
                 output.append(line.split(' ')[0].rstrip())
-                output.append(line.split(' ')[2].rstrip())
+                output.append(line.split(' ')[1].rstrip())
                 # add features to output
-                output.append(line.split(' ')[1])
+                output.append(str(lineCount))
                 output.append(str(emptyLineCount))
                 output.append(str(commentLineCount))
                 output.append(str(poorlySpacedComments))

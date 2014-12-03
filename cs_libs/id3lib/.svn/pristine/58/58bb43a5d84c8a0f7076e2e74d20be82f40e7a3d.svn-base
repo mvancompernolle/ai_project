@@ -1,0 +1,43 @@
+Release: 0.5 – 8/2011
+
+Enhancements:
+
+* all unsafe code removed, with much help from gafman
+  https://sourceforge.net/tracker/?func=detail&aid=3028122&group_id=89188&atid=589317
+  
+* solution and projects ported into VS2010; libraries use .Net 2.0, apps use .Net 3.5, ms tests have to use .Net 4.0
+
+* Moved the exceptions and frames to different namespaces.
+
+* Mp3FileData lazy-loaded to improve performance after updating a file
+
+Bug Fixes:
+
+* https://sourceforge.net/tracker/?func=detail&aid=3205526&group_id=89188&atid=589317
+  if the file is MPEG 1 Layer 3 then the first two bytes are 0xff 0xf0
+  if the file is MPEG 2.5 then the first two bytes are 0xff 0xe0
+  Thanks to Peter Taylor (pjt33b) for spotting this.
+
+* AudioFile.ReadFirstFrame only needs to open the file for read
+  thanks to gafman for a patch
+
+* https://sourceforge.net/tracker/index.php?func=detail&aid=3205347&group_id=89188&atid=589317
+  another incorrect FileShare.Write in AudioFile on line 108 which should also be FileShare.Read.
+  Thanks again to Peter Taylor (pjt33b) 
+
+* Use FileInfo.FullName not FileInfo.Name to create temp file in audio source file's directory 
+  (as  originally intended), not process working directory.
+  Patch https://sourceforge.net/tracker/?func=detail&atid=589319&aid=2918889&group_id=89188
+  Fixes https://sourceforge.net/tracker/?func=detail&atid=589317&aid=2907274&group_id=89188
+  Thanks to Ed Brey (breyed)
+
+* https://sourceforge.net/tracker/?func=detail&aid=2876258&group_id=89188&atid=589317
+  if (frameModel.Header.Version == 4) then frameSize = Sync.Unsafe(frameSize) and frameSize = Sync.Safe(frameSize);
+  thanks to an anonymous benefactor
+
+* Use new Memory.Extract instead of Memory.Copy
+
+* Memory.GetBytes(ulong value) returns 8 bytes
+  This is always suitable for Id3Lib.Frames.FramePlayCounter.Counter and Id3Lib.Frames.FramePopularimeter.Counter.
+
+Release: 0.4 – 6/2009

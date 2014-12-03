@@ -1,0 +1,55 @@
+Release: 0.6 - June/2012
+
+Removed IFrame and now using FrameBase as the root, I did not see much benefit of having the interface as a mirror of the abstract base class.
+I renamed several class from Frame to Tag to make it clear that they deal with the whole Tag not a specific frame.
+These are braking changes but they can be fixed easily by renaming the classes.
+
+Bug Fixes:
+
+* Unicode stings that have characters ending in zero on some circumstances would be truncated and would mess the whole frame by shifting it one byte,
+the bug was not setting the search position to the one desired and instead searching form the beginning of the byte array.
+
+* Un-sync safe was not working properly, the un-synced stream requires to be rewound to the beginning of the file, this was not being done.
+
+Release: 0.5 – 8/2011
+
+Enhancements:
+
+* all unsafe code removed, with much help from gafman
+  
+* solution and projects ported into VS2010; libraries use .Net 2.0, apps use .Net 3.5, ms tests have to use .Net 4.0
+
+* Moved the exceptions and frames to different namespaces.
+
+* Mp3FileData lazy-loaded to improve performance after updating a file
+
+Bug Fixes:
+
+* https://sourceforge.net/tracker/?func=detail&aid=3205526&group_id=89188&atid=589317
+  if the file is MPEG 1 Layer 3 then the first two bytes are 0xff 0xf0
+  if the file is MPEG 2.5 then the first two bytes are 0xff 0xe0
+  Thanks to Peter Taylor (pjt33b) for spotting this.
+
+* AudioFile.ReadFirstFrame only needs to open the file for read
+  thanks to gafman for a patch
+
+* https://sourceforge.net/tracker/index.php?func=detail&aid=3205347&group_id=89188&atid=589317
+  another incorrect FileShare.Write in AudioFile on line 108 which should also be FileShare.Read.
+  Thanks again to Peter Taylor (pjt33b) 
+
+* Use FileInfo.FullName not FileInfo.Name to create temp file in audio source file's directory 
+  (as  originally intended), not process working directory.
+  Patch https://sourceforge.net/tracker/?func=detail&atid=589319&aid=2918889&group_id=89188
+  Fixes https://sourceforge.net/tracker/?func=detail&atid=589317&aid=2907274&group_id=89188
+  Thanks to Ed Brey (breyed)
+
+* https://sourceforge.net/tracker/?func=detail&aid=2876258&group_id=89188&atid=589317
+  if (frameModel.Header.Version == 4) then frameSize = Sync.Unsafe(frameSize) and frameSize = Sync.Safe(frameSize);
+  thanks to an anonymous benefactor
+
+* Use new Memory.Extract instead of Memory.Copy
+
+* Memory.GetBytes(ulong value) returns 8 bytes
+  This is always suitable for Id3Lib.Frames.FramePlayCounter.Counter and Id3Lib.Frames.FramePopularimeter.Counter.
+
+Release: 0.4 – 6/2009
